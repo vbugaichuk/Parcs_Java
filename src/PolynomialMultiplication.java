@@ -12,8 +12,8 @@ public class PolynomialMultiplication {
         curtask.addJarFile("FFT.jar");
         AMInfo info = new AMInfo(curtask, null);
 
-        ArrayList<Complex> a = readPolynomial("a2000.txt");
-        ArrayList<Complex> b = readPolynomial("b2000.txt");
+        ArrayList<Complex> a = readPolynomial("a100.txt");
+        ArrayList<Complex> b = readPolynomial("b100.txt");
 
         int padSize = 2 * nextPowerOf2(Math.max(a.size(), b.size()));
 
@@ -50,14 +50,14 @@ public class PolynomialMultiplication {
         for (int i = 0; i < nDiff; i++) {
             c.remove(c.size() - 1);
         }
-        // scaling
+
         for (int i = 0; i < c.size(); i++) {
             c.set(i, Complex.div(c.get(i), cSize));
         }
 
         double estimatedTime = (double) (System.nanoTime() - startTime) / 1000000000;
         System.out.println("Time total (excluding IO): " + estimatedTime);
-        writePolynomial("c2000.txt", c);
+        writePolynomial("c100.txt", c);
 
         curtask.end();
     }
@@ -119,11 +119,4 @@ public class PolynomialMultiplication {
         return aNew;
     }
 
-    public static ArrayList<Double> toDouble(ArrayList<Complex> a) {
-        ArrayList<Double> result = new ArrayList<Double>();
-        for (Complex c : a) {
-            result.add(c.r);
-        }
-        return result;
-    }
 }
